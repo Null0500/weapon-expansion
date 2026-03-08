@@ -28,6 +28,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         toolBuilder("Axe", RecipeCategory.TOOLS, JadeTools.JADE_AXE.get(), ModItems.CUT_JADE.get(), finishedRecipeConsumer);
         toolBuilder("Shovel", RecipeCategory.TOOLS, JadeTools.JADE_SHOVEL.get(), ModItems.CUT_JADE.get(), finishedRecipeConsumer);
         toolBuilder("Hoe", RecipeCategory.TOOLS, JadeTools.JADE_HOE.get(), ModItems.CUT_JADE.get(), finishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.JADE_BANGLE.get())
+                .pattern(" GJ")
+                .pattern("G G")
+                .pattern(" G ")
+                .define('J', ModItems.CUT_JADE.get())
+                .define('G', Items.GOLD_INGOT.asItem())
+                .unlockedBy(getHasName(ModItems.CUT_JADE.get()), has(ModItems.CUT_JADE.get()))
+                .save(finishedRecipeConsumer, MODID + ":jade_bangle_from_crafting");
     }
 
 
@@ -57,7 +66,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material));
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting");
         }
 
         if (type.equals("Pickaxe")) {
@@ -68,7 +77,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material));
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting");
         }
 
         if (type.equals("Axe")) {
@@ -79,7 +88,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material) + "_right");
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting_right");
 
             ShapedRecipeBuilder.shaped(category, output)
                     .pattern("JJ")
@@ -88,7 +97,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material) + "_left");
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting_left");
         }
 
         if (type.equals("Hoe")) {
@@ -99,7 +108,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material) + "_right");
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting_right");
 
             ShapedRecipeBuilder.shaped(category, output)
                     .pattern("JJ")
@@ -108,7 +117,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material) + "_left");
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting_left");
         }
 
         if (type.equals("Shovel")) {
@@ -119,7 +128,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .define('J', material)
                     .define('S', Items.STICK)
                     .unlockedBy(getHasName(material), has(material))
-                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_" + getItemName(material));
+                    .save(finishedRecipeConsumer, MODID + ":" + baseName + "_from_crafting");
         }
     }
 
