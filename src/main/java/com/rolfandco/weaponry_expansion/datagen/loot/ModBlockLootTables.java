@@ -19,6 +19,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.JADE_BLOCK.get());
+        this.dropSelf(ModBlocks.T1_MODULE_TABLE.get());
 
         this.add(ModBlocks.JADE_ORE.get(), block -> createOreDrop(ModBlocks.JADE_ORE.get(), ModItems.CUT_JADE.get()));
     }

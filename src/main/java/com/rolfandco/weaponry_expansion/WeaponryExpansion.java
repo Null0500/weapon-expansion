@@ -2,8 +2,9 @@ package com.rolfandco.weaponry_expansion;
 
 import com.mojang.logging.LogUtils;
 import com.rolfandco.weaponry_expansion.block.ModBlocks;
+import com.rolfandco.weaponry_expansion.item.ModCreativeModeTabs;
 import com.rolfandco.weaponry_expansion.item.ModItems;
-import com.rolfandco.weaponry_expansion.item.jade.JadeArmor;
+import com.rolfandco.weaponry_expansion.item.blank_items.BlankTools;
 import com.rolfandco.weaponry_expansion.item.jade.JadeTools;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,8 +41,12 @@ public class WeaponryExpansion {
         ModBlocks.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
-        JadeArmor.register(modEventBus);
+        // Register the Creative Tab
+        ModCreativeModeTabs.register(modEventBus);
+
         JadeTools.register(modEventBus);
+
+        BlankTools.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
 

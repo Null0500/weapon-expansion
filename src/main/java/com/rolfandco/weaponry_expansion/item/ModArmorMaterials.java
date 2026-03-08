@@ -14,9 +14,9 @@ import static com.rolfandco.weaponry_expansion.WeaponryExpansion.MODID;
 
 public enum ModArmorMaterials implements ArmorMaterial {
 
-    JADE("jade", 38, new int[]{4, 9, 7, 4}, 20,
-            SoundEvents.ARMOR_EQUIP_CHAIN, 4F, 0.11F,
-            () -> Ingredient.of(ModItems.CUT_JADE.get()));
+    BLANK("blank", 38, new int[]{4, 9, 7, 4}, 20,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 4F, 0.11F,
+            () -> Ingredient.of(ModItems.BLANKSTONE.get()));
 
     private final String name;
     private final int durabilityMultiplier;
