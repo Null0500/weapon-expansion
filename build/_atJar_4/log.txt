@@ -1,0 +1,7 @@
+Java Launcher: /Users/dis0011/Library/Java/JavaVirtualMachines/azul-17.0.17/Contents/Home/bin/java
+Arguments: '--inJar, /Users/dis0011/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.16/forge-1.20.1-47.4.16-injected.jar, --outJar, /Users/dis0011/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.16_mapped_official_1.20.1/forge-1.20.1-47.4.16_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, /Users/dis0011/Stuff/Weaponry Expansion/build/_atJar_4/parent_at.cfg'
+Classpath:
+ - /Users/dis0011/.gradle/caches/forge_gradle/maven_downloader/net/minecraftforge/accesstransformers/8.2.1/accesstransformers-8.2.1-fatjar.jar
+Working directory: /Users/dis0011/Stuff/Weaponry Expansion/build/_atJar_4
+Main class: net.minecraftforge.accesstransformer.TransformerProcessor
+====================================
