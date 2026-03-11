@@ -1,11 +1,15 @@
 package com.rolfandco.weaponry_expansion;
 
-import com.mojang.logging.LogUtils;
 import com.rolfandco.weaponry_expansion.block.ModBlocks;
+import com.rolfandco.weaponry_expansion.entity.ModBlockEntities;
 import com.rolfandco.weaponry_expansion.item.ModCreativeModeTabs;
 import com.rolfandco.weaponry_expansion.item.ModItems;
 import com.rolfandco.weaponry_expansion.item.blank_items.BlankTools;
 import com.rolfandco.weaponry_expansion.item.jade.JadeTools;
+import com.rolfandco.weaponry_expansion.screen.ModMenuTypes;
+import com.rolfandco.weaponry_expansion.screen.T1ModuleTableMenu;
+import com.rolfandco.weaponry_expansion.screen.T1ModuleTableScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -39,6 +43,7 @@ public class WeaponryExpansion {
 
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
         // Register the Creative Tab
@@ -48,6 +53,8 @@ public class WeaponryExpansion {
 
         BlankTools.register(modEventBus);
 
+
+        ModMenuTypes.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
 
 
@@ -75,6 +82,10 @@ public class WeaponryExpansion {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            Logger.info("Client Setup from Weaponry Expansion!");
+            event.enqueueWork(
+                    () -> MenuScreens.register(ModMenuTypes.T1_MODULE_TABLE_MENU.get(), T1ModuleTableScreen::new)
+            );
         }
     }
 }

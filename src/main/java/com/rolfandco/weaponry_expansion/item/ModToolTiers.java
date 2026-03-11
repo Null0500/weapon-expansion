@@ -17,7 +17,7 @@ public static final Tier JADE = TierSortingRegistry.registerTier(
                 ModTags.Blocks.NEEDS_JADE_TOOL, () -> Ingredient.of(ModItems.CUT_JADE.get())),
         new ResourceLocation(MODID, "jade"), List.of(Tiers.NETHERITE), List.of());
     public static final Tier BLANK = TierSortingRegistry.registerTier(
-            new ForgeTier(6, 4096, 0.25f, 4f, 20,
+            new ForgeTier(6, 4096, 0.25f, 4f, 0,
                     ModTags.Blocks.NEEDS_BLANK_TOOL, () -> Ingredient.of(ModItems.BLANKSTONE.get())),
             new ResourceLocation(MODID, "blank"), List.of(Tiers.STONE), List.of());
 }

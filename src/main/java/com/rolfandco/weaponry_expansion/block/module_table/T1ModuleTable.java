@@ -2,24 +2,32 @@ package com.rolfandco.weaponry_expansion.block.module_table;
 
 import com.rolfandco.weaponry_expansion.Logger;
 import com.rolfandco.weaponry_expansion.datagen.ModItemTagProvider;
-import com.rolfandco.weaponry_expansion.item.ModItems;
-import com.rolfandco.weaponry_expansion.item.blank_items.BlankTools;
+import com.rolfandco.weaponry_expansion.entity.T1ModuleTableBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.EnchantmentMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
+
+import javax.annotation.Nullable;
 
 
-public class T1ModuleTable extends Block {
+public class T1ModuleTable extends BaseEntityBlock {
 
     public T1ModuleTable(Properties properties) {
         super(properties);
@@ -50,14 +58,39 @@ public class T1ModuleTable extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        ItemStack itemstack = player.getItemInHand(hand);
-        if (itemstack.is(ModItemTagProvider.BLANK_GEAR)) {
-            Logger.info("This item has the Blank Gear tag!");
-            return InteractionResult.PASS;
-        } else {
-            return InteractionResult.FAIL;
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.is(ModItemTagProvider.BLANK_GEAR)) {
+            Logger.debug("Blank Gear detected!");
         }
+
+        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, pos));
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
+
+    @Override
+    public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockNewState, boolean isMoving) {
+        if (blockState.getBlock() != blockNewState.getBlock()) {
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+            if (blockEntity instanceof T1ModuleTableBlockEntity) {
+                ((T1ModuleTableBlockEntity) blockEntity).drops();
+            }
+        }
+
+        super.onRemove(blockState, level, blockPos, blockNewState, isMoving);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState blockState) {
+        return RenderShape.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new T1ModuleTableBlockEntity(blockPos, blockState);
+    }
 }

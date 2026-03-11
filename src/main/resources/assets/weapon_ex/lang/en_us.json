@@ -10,5 +10,6 @@
   "item.weapon_ex.jade_helmet": "Jade Helmet",
   "item.weapon_ex.jade_chestplate": "Jade Chestplate",
   "item.weapon_ex.jade_leggings": "Jade Leggings",
-  "item.weapon_ex.jade_boots": "Jade Boots"
+  "item.weapon_ex.jade_boots": "Jade Boots",
+  "container.weapon_ex.t1_module_table" : "T1 Module Table"
 }
